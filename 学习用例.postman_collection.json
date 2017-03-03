@@ -1,0 +1,198 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Users",
+		"_postman_id": "e1efbd58-3ce9-d9b6-abf8-b792a4126a26",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"User_name\"] = responseBody.has(\"account\");",
+							"tests[\"response_code\"]= responseCode.code === 200;",
+							"tests[\"response_header\"] = (postman.getResponseHeader(\"Authorization\"));",
+							"",
+							"var body = JSON.parse(responseBody);",
+							"tests[\"user_id\"]=body.data.id;",
+							"postman.setGlobalVariable(\"user id\", tests[\"user_id\"]);",
+							"",
+							"var token = postman.getResponseHeader('Authorization');",
+							"tests[\"token\"]=token;",
+							"postman.setGlobalVariable(\"token\", tests[\"token\"]); ",
+							"    ",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{API}}/{{Prefix}}/users/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"account\":\"admin\",\n\t\"password\":\"admin\",\n\t\"platform\":\"web\"\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "7433fdc9-0989-4952-bc9c-ac766ba0228a",
+					"name": "1",
+					"originalRequest": {
+						"url": "{{API}}/{{Prefix}}/users/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"enabled": true,
+								"description": "The mime type of this content",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account\":\"admin\",\n\t\"password\":\"admin\",\n\t\"platform\":\"web\"\n\t\n}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, DELETE, PATCH",
+							"name": "Access-Control-Allow-Methods",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": "Authorization",
+							"name": "Access-Control-Expose-Headers",
+							"description": "Lets a server whitelist headers that browsers are allowed to access."
+						},
+						{
+							"key": "Authorization",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4YTUwZWYyNjEwMTZlMmMxMDQzZDNkMSIsImlzcyI6InFpeGluZy1ncm91cCJ9.vlAg5J4TaZzxhuUlH6D3HVFT1O1cmiAjSpuTUCL_lRU",
+							"name": "Authorization",
+							"description": "Custom header"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip",
+							"name": "Content-Encoding",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"key": "Content-Length",
+							"value": "212",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Feb 2017 06:13:45 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Server",
+							"value": "Caddy",
+							"name": "Server",
+							"description": "A name for the server"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"responseTime": 50,
+					"body": "{\"total\":1,\"data\":{\"id\":\"58a50ef261016e2c1043d3d1\",\"account\":\"admin\",\"nickname\":\"hzqx_02hzqx_02hzqx_02\",\"password\":\"******\",\"role\":\"1\",\"company\":\"hzqx\",\"phone\":\"18368917079\",\"email\":\"1457995630@qq.com\",\"created_time\":\"2017-02-16 10:31:14\",\"modified_time\":\"2017-02-23 14:13:28\"}}"
+				}
+			]
+		},
+		{
+			"name": "Get all users",
+			"request": {
+				"url": "{{API}}/{{Prefix}}/users/hzqx",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit user",
+			"request": {
+				"url": "{{API}}/{{Prefix}}/users/58a50ef261016e2c1043d3d1",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"phone\": \"18368917079\"\r\n\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
