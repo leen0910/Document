@@ -1,0 +1,973 @@
+{
+	"variables": [],
+	"info": {
+		"name": "tracy--QX",
+		"_postman_id": "f327e09c-a282-f7d9-7f69-fd389c8faf7a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Parameter",
+			"description": "add parameter\nget all parameter\ndelete the first parameter\n",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"User_name\"] = responseBody.has(\"account\");",
+									"tests[\"response_code\"]= responseCode.code === 200;",
+									"tests[\"response_header\"] = (postman.getResponseHeader(\"Authorization\"));",
+									"",
+									"var body = JSON.parse(responseBody);",
+									"tests[\"user_id\"]=body.data.id;",
+									"postman.setGlobalVariable(\"user id\", tests[\"user_id\"]);",
+									"",
+									"var token = postman.getResponseHeader('Authorization');",
+									"tests[\"token\"]=token;",
+									"postman.setGlobalVariable(\"token\", tests[\"token\"]); ",
+									"    ",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{API}}{{Prefix}}/users/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account\":\"tracy\",\n\t\"password\":\"tracy\",\n\t\"platform\":\"android\"\n\t\n}"
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "de32af23-a6ea-4033-8f42-7fb4d177cf77",
+							"name": "1",
+							"originalRequest": {
+								"url": "{{API}}/{{Prefix}}/users/login",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account\":\"admin\",\n\t\"password\":\"admin\",\n\t\"platform\":\"web\"\n\t\n}"
+								},
+								"description": ""
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PATCH",
+									"name": "Access-Control-Allow-Methods",
+									"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization",
+									"name": "Access-Control-Expose-Headers",
+									"description": "Lets a server whitelist headers that browsers are allowed to access."
+								},
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4YTUwZWYyNjEwMTZlMmMxMDQzZDNkMSIsImlzcyI6InFpeGluZy1ncm91cCJ9.vlAg5J4TaZzxhuUlH6D3HVFT1O1cmiAjSpuTUCL_lRU",
+									"name": "Authorization",
+									"description": "Custom header"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Length",
+									"value": "212",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Feb 2017 06:13:45 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								}
+							],
+							"cookie": [],
+							"responseTime": 50,
+							"body": "{\"total\":1,\"data\":{\"id\":\"58a50ef261016e2c1043d3d1\",\"account\":\"admin\",\"nickname\":\"hzqx_02hzqx_02hzqx_02\",\"password\":\"******\",\"role\":\"1\",\"company\":\"hzqx\",\"phone\":\"18368917079\",\"email\":\"1457995630@qq.com\",\"created_time\":\"2017-02-16 10:31:14\",\"modified_time\":\"2017-02-23 14:13:28\"}}"
+						}
+					]
+				},
+				{
+					"name": "create parameter",
+					"request": {
+						"url": "{{API}}{{Prefix}}/parameters",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Platform",
+								"value": "windows",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"参数文件{{$randomInt}}\",\n  \"data\": \"{ad:[]\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get all parameter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Parameter\"] = responseBody.has(\"parameter\");",
+									"",
+									"var body = JSON.parse(responseBody);",
+									"",
+									"if (body.data[0]){",
+									"    tests[\"body has parameter\"] = true;",
+									"    tests[\"sid\"]=body.data[0].id;",
+									"    postman.setGlobalVariable(\"Sid\", tests[\"sid\"]);",
+									"}",
+									"else{",
+									"    tests[\"body has parameter\"] = false;",
+									"}",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{API}}{{Prefix}}/parameters/all",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"para_type\": \"basic\",\n  \"data\": \"basic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parametersbasic parameters\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Delete the first one parameter",
+					"request": {
+						"url": "{{API}}{{Prefix}}/parameters/{{Sid}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Program",
+			"description": "get all program\nadd program\ndelelt the firs program",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response_header\"] = (postman.getResponseHeader(\"Authorization\"));",
+									"",
+									"var body = JSON.parse(responseBody);",
+									"var token = postman.getResponseHeader('Authorization');",
+									"tests[\"token\"]=token;",
+									"postman.setGlobalVariable(\"token\", tests[\"token\"]); "
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{API}}{{Prefix}}/users/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account\":\"tracy\",\n\t\"password\":\"tracy\",\n\t\"platform\":\"android\"\n\t\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "上传一个程序",
+					"request": {
+						"url": "{{API}}{{Prefix}}/programs",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"程序{{$randomInt}}\",\n  \"author\": \"admin\",\n  \"size\": 100,\n  \"data\": \"{\\\"$program_程序{{$randomInt}}\\\":{\\\"data\\\":[{\\\"children\\\":[{\\\"label\\\":\\\"分组1\\\",\\\"name\\\":\\\"group\\\",\\\"id\\\":\\\"C4D3B957-B920-483F-584D-266EB287102B\\\",\\\"expanded\\\":false,\\\"expandedIcon\\\":\\\"changeGroup\\\",\\\"collapsedIcon\\\":\\\"changeGroupOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"点到点\\\",\\\"name\\\":\\\"p2p\\\",\\\"id\\\":\\\"DFCEFCDE-242A-D449-55F3-283F00F13716\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-toPoint\\\",\\\"collapsedIcon\\\":\\\"fa-folder-toPointOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"路点a\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"changePoint\\\",\\\"id\\\":\\\"F2487236-F655-06CC-8304-14B2655C35A6\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"3636DE4E-5DD1-002B-806F-D3BF5BAABD80\\\",\\\"anchor\\\":\\\"point1\\\",\\\"plane\\\":\\\"none\\\"},\\\"expandedIcon\\\":\\\"changePointOpen\\\"},{\\\"label\\\":\\\"路点b\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"changePoint\\\",\\\"id\\\":\\\"C25D9556-AF4C-C0B5-E49D-F86B1D919737\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"3636DE4E-5DD1-002B-806F-D3BF5BAABD80\\\",\\\"anchor\\\":\\\"point2\\\",\\\"plane\\\":\\\"none\\\"},\\\"expandedIcon\\\":\\\"changePointOpen\\\"},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"8423D144-6491-9548-9FB1-CF764B9298C1\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"3636DE4E-5DD1-002B-806F-D3BF5BAABD80\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"FF675C0D-BACD-5F10-07BE-59FF81FB9DDA\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"3636DE4E-5DD1-002B-806F-D3BF5BAABD80\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"CEF9E332-5048-99A8-DCD9-53648675CE13\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"3636DE4E-5DD1-002B-806F-D3BF5BAABD80\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"0581D792-5D1A-C0E5-3814-1E6669FF6A81\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"3636DE4E-5DD1-002B-806F-D3BF5BAABD80\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}}],\\\"data\\\":{\\\"velocity\\\":100}}],\\\"data\\\":{\\\"csys\\\":\\\"3636DE4E-5DD1-002B-806F-D3BF5BAABD80\\\"}},{\\\"label\\\":\\\"分组2\\\",\\\"name\\\":\\\"group\\\",\\\"id\\\":\\\"EACD31A6-73E2-8607-6075-B62F8AE3DA0B\\\",\\\"expanded\\\":false,\\\"expandedIcon\\\":\\\"changeGroup\\\",\\\"collapsedIcon\\\":\\\"changeGroupOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"点到点\\\",\\\"name\\\":\\\"p2p\\\",\\\"id\\\":\\\"0D059489-2E98-D474-D835-290597E740C1\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-toPoint\\\",\\\"collapsedIcon\\\":\\\"fa-folder-toPointOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"路点c\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"changePoint\\\",\\\"id\\\":\\\"6E1E973B-6A67-CC19-F369-9A41B89D5A42\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"E24B2E86-1D46-9237-FF0B-4FD4C289FB31\\\",\\\"anchor\\\":\\\"point1\\\",\\\"plane\\\":\\\"none\\\"},\\\"expandedIcon\\\":\\\"changePointOpen\\\"},{\\\"label\\\":\\\"路点d\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"changePoint\\\",\\\"id\\\":\\\"D04894EB-14DD-F025-8B1A-B71407EFC82E\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"E24B2E86-1D46-9237-FF0B-4FD4C289FB31\\\",\\\"anchor\\\":\\\"point2\\\",\\\"plane\\\":\\\"none\\\"},\\\"expandedIcon\\\":\\\"changePointOpen\\\"},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"9823923C-EA1E-AC87-B6BF-FFF7C8304DBE\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"E24B2E86-1D46-9237-FF0B-4FD4C289FB31\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"7D06B57E-688C-36B9-F033-A77345734964\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"E24B2E86-1D46-9237-FF0B-4FD4C289FB31\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"CE4B9354-1D85-357E-573E-40A90BF4DA3B\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"E24B2E86-1D46-9237-FF0B-4FD4C289FB31\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}}],\\\"data\\\":{\\\"velocity\\\":100}}],\\\"data\\\":{\\\"csys\\\":\\\"E24B2E86-1D46-9237-FF0B-4FD4C289FB31\\\"}},{\\\"label\\\":\\\"分组3\\\",\\\"name\\\":\\\"group\\\",\\\"id\\\":\\\"8FF94EED-3D0F-D148-72B6-248095D08D12\\\",\\\"expanded\\\":false,\\\"expandedIcon\\\":\\\"changeGroup\\\",\\\"collapsedIcon\\\":\\\"changeGroupOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"点到点\\\",\\\"name\\\":\\\"p2p\\\",\\\"id\\\":\\\"1807521D-A0AB-A277-E4DF-320C6A573C68\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-toPoint\\\",\\\"collapsedIcon\\\":\\\"fa-folder-toPointOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"路点e\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"changePoint\\\",\\\"id\\\":\\\"FFD9667F-71D1-6EDE-AF2C-8BAA1004744C\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"C6CE0536-8363-D639-AFC3-EB2A9FD39E5F\\\",\\\"anchor\\\":\\\"point1\\\",\\\"plane\\\":\\\"none\\\"},\\\"expandedIcon\\\":\\\"changePointOpen\\\"},{\\\"label\\\":\\\"路点f\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"changePoint\\\",\\\"id\\\":\\\"54DDBFAB-514C-EE5F-FF8A-76A0DD3E215B\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"C6CE0536-8363-D639-AFC3-EB2A9FD39E5F\\\",\\\"anchor\\\":\\\"point2\\\",\\\"plane\\\":\\\"none\\\"},\\\"expandedIcon\\\":\\\"changePointOpen\\\"},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"EF64FB94-22C9-0F9D-C676-4F9D4512BD7D\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"C6CE0536-8363-D639-AFC3-EB2A9FD39E5F\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"F8FA742A-DDDF-93EC-60C0-7F5BB06C25C4\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"C6CE0536-8363-D639-AFC3-EB2A9FD39E5F\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"85234081-475A-52B7-A013-1E468FDF129A\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"C6CE0536-8363-D639-AFC3-EB2A9FD39E5F\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}}],\\\"data\\\":{\\\"velocity\\\":100}}],\\\"data\\\":{\\\"csys\\\":\\\"C6CE0536-8363-D639-AFC3-EB2A9FD39E5F\\\"}},{\\\"label\\\":\\\"分组4\\\",\\\"name\\\":\\\"group\\\",\\\"id\\\":\\\"A2F49292-E3BF-FA93-9E85-891F9CF26DBE\\\",\\\"expanded\\\":false,\\\"expandedIcon\\\":\\\"changeGroup\\\",\\\"collapsedIcon\\\":\\\"changeGroupOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"点到点\\\",\\\"name\\\":\\\"p2p\\\",\\\"id\\\":\\\"2E5C4947-882C-EF8F-40C2-767E0C154817\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-toPoint\\\",\\\"collapsedIcon\\\":\\\"fa-folder-toPointOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"路点i\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"changePoint\\\",\\\"id\\\":\\\"C83417F6-1909-6DA4-157B-33A48E312C6F\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\",\\\"anchor\\\":\\\"point1\\\",\\\"plane\\\":\\\"none\\\"},\\\"expandedIcon\\\":\\\"changePointOpen\\\"},{\\\"label\\\":\\\"路点k\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"changePoint\\\",\\\"id\\\":\\\"3F1EC726-D713-39BC-DDF9-016F744D6696\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\",\\\"anchor\\\":\\\"point2\\\",\\\"plane\\\":\\\"none\\\"},\\\"expandedIcon\\\":\\\"changePointOpen\\\"},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"D0BF2116-B4BC-8553-F1DC-CF38C5CF992F\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"6C16FB35-649A-4F3B-FDEA-CC9FDA5F34ED\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"1FF7C2F2-E1FA-3053-1EE5-6AD01C2772F2\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}}],\\\"data\\\":{\\\"velocity\\\":100}}],\\\"data\\\":{\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\"}},{\\\"label\\\":\\\"分组5\\\",\\\"name\\\":\\\"group\\\",\\\"id\\\":\\\"EA24C429-FC39-3414-2926-8ED2D4430EE4\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-groupClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-groupOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"点到点\\\",\\\"name\\\":\\\"p2p\\\",\\\"id\\\":\\\"BFD4E1F4-62A4-D3A6-27D9-A86757630273\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-toPoint\\\",\\\"collapsedIcon\\\":\\\"fa-folder-toPointOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"路点l\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"changePoint\\\",\\\"id\\\":\\\"80380F7E-315D-C196-EE88-D44BB46E2994\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"7CF19DBD-C861-D7E0-0A4D-EF9FD1277013\\\",\\\"anchor\\\":\\\"point1\\\",\\\"plane\\\":\\\"none\\\"},\\\"expandedIcon\\\":\\\"changePointOpen\\\"},{\\\"label\\\":\\\"路点M\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"141D496D-D607-4CD0-A15C-98EFBAA55DDE\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\",\\\"anchor\\\":\\\"point2\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点N\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"F36C9116-5DFA-6CA3-33EB-B3C972A84ADA\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\",\\\"anchor\\\":\\\"point2\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"7872CE74-28F2-9A1D-F82C-ABC2B4266D1F\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\",\\\"anchor\\\":\\\"point2\\\",\\\"plane\\\":\\\"none\\\"}}],\\\"data\\\":{\\\"velocity\\\":100}}],\\\"data\\\":{\\\"csys\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\"}},{\\\"label\\\":\\\"点到点\\\",\\\"name\\\":\\\"p2p\\\",\\\"id\\\":\\\"F19B4E9F-53DD-0E9F-12A0-6266AACA32F9\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-toPoint\\\",\\\"collapsedIcon\\\":\\\"fa-folder-toPointOpen\\\",\\\"children\\\":[{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"77DB17CB-7BA9-A74F-8125-578E3960CB71\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"default\\\",\\\"anchor\\\":\\\"none\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"11C696B8-819A-EBFB-F0DB-AB30F66CCBCE\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"7CF19DBD-C861-D7E0-0A4D-EF9FD1277013\\\",\\\"anchor\\\":\\\"point1\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"D327E692-C5AC-D8CA-67C4-86BCD1A084D9\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"7CF19DBD-C861-D7E0-0A4D-EF9FD1277013\\\",\\\"anchor\\\":\\\"point1\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"81FC4A60-6583-F415-E878-9D3D64C51DAA\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"7CF19DBD-C861-D7E0-0A4D-EF9FD1277013\\\",\\\"anchor\\\":\\\"point1\\\",\\\"plane\\\":\\\"none\\\"}},{\\\"label\\\":\\\"路点\\\",\\\"expanded\\\":true,\\\"name\\\":\\\"point\\\",\\\"icon\\\":\\\"fa-folder-point\\\",\\\"id\\\":\\\"DABCF894-4D47-6E82-2FD0-30017C8BD327\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":400,\\\"y\\\":0,\\\"z\\\":0,\\\"rx\\\":0,\\\"arm\\\":\\\"right\\\",\\\"coordinate\\\":\\\"workpiece\\\",\\\"csys\\\":\\\"7CF19DBD-C861-D7E0-0A4D-EF9FD1277013\\\",\\\"anchor\\\":\\\"point1\\\",\\\"plane\\\":\\\"none\\\"}}],\\\"data\\\":{\\\"velocity\\\":100}}],\\\"id\\\":\\\"1321312312\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-mainClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-mainOpen\\\",\\\"label\\\":\\\"5个坐标系\\\",\\\"name\\\":\\\"program\\\",\\\"data\\\":{\\\"version\\\":\\\"v1.0.0\\\",\\\"csys\\\":\\\"default\\\"}},{\\\"children\\\":[{\\\"label\\\":\\\"世界坐标系\\\",\\\"name\\\":\\\"world_sys\\\",\\\"id\\\":\\\"default\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-coordinateClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-coordinateOpen\\\",\\\"children\\\":[]},{\\\"label\\\":\\\"参考坐标系1\\\",\\\"name\\\":\\\"csys\\\",\\\"id\\\":\\\"3636DE4E-5DD1-002B-806F-D3BF5BAABD80\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-coordinateClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-coordinateOpen\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"z\\\":0,\\\"r\\\":0,\\\"rotation\\\":0,\\\"point1\\\":\\\"F2487236-F655-06CC-8304-14B2655C35A6\\\",\\\"point2\\\":\\\"C25D9556-AF4C-C0B5-E49D-F86B1D919737\\\"}},{\\\"label\\\":\\\"参考坐标系2\\\",\\\"name\\\":\\\"csys\\\",\\\"id\\\":\\\"E24B2E86-1D46-9237-FF0B-4FD4C289FB31\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-coordinateClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-coordinateOpen\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"z\\\":0,\\\"r\\\":0,\\\"rotation\\\":0,\\\"point1\\\":\\\"6E1E973B-6A67-CC19-F369-9A41B89D5A42\\\",\\\"point2\\\":\\\"D04894EB-14DD-F025-8B1A-B71407EFC82E\\\"}},{\\\"label\\\":\\\"参考坐标系3\\\",\\\"name\\\":\\\"csys\\\",\\\"id\\\":\\\"C6CE0536-8363-D639-AFC3-EB2A9FD39E5F\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-coordinateClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-coordinateOpen\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"z\\\":0,\\\"r\\\":0,\\\"rotation\\\":0,\\\"point1\\\":\\\"FFD9667F-71D1-6EDE-AF2C-8BAA1004744C\\\",\\\"point2\\\":\\\"54DDBFAB-514C-EE5F-FF8A-76A0DD3E215B\\\"}},{\\\"label\\\":\\\"参考坐标系4\\\",\\\"name\\\":\\\"csys\\\",\\\"id\\\":\\\"A693184B-2B66-9018-81E8-CBD6BEBDB946\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-coordinateClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-coordinateOpen\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"z\\\":0,\\\"r\\\":0,\\\"rotation\\\":0,\\\"point1\\\":\\\"C83417F6-1909-6DA4-157B-33A48E312C6F\\\",\\\"point2\\\":\\\"3F1EC726-D713-39BC-DDF9-016F744D6696\\\"}},{\\\"label\\\":\\\"参考坐标系5\\\",\\\"name\\\":\\\"csys\\\",\\\"id\\\":\\\"7CF19DBD-C861-D7E0-0A4D-EF9FD1277013\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-coordinateClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-coordinateOpen\\\",\\\"children\\\":[],\\\"data\\\":{\\\"x\\\":0,\\\"y\\\":0,\\\"z\\\":0,\\\"r\\\":0,\\\"rotation\\\":0,\\\"point1\\\":\\\"80380F7E-315D-C196-EE88-D44BB46E2994\\\",\\\"point2\\\":\\\"\\\"}}],\\\"id\\\":\\\"7777777\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-coordinateClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-coordinateOpen\\\",\\\"label\\\":\\\"坐标系\\\",\\\"name\\\":\\\"all_sys\\\"},{\\\"id\\\":\\\"99999999\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-mainClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-mainOpen\\\",\\\"label\\\":\\\"四轴机器人\\\",\\\"name\\\":\\\"robot_4_axis\\\",\\\"children\\\":[{\\\"label\\\":\\\"基座\\\",\\\"name\\\":\\\"base\\\",\\\"id\\\":\\\"888888\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-groupClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-groupOpen\\\",\\\"children\\\":[]},{\\\"label\\\":\\\"关节1\\\",\\\"name\\\":\\\"arm_1\\\",\\\"id\\\":\\\"1111111\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-groupClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-groupOpen\\\",\\\"children\\\":[]},{\\\"label\\\":\\\"关节2\\\",\\\"name\\\":\\\"arm_2\\\",\\\"id\\\":\\\"2222222\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-groupClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-groupOpen\\\",\\\"children\\\":[]},{\\\"label\\\":\\\"Z轴\\\",\\\"name\\\":\\\"z_axis\\\",\\\"id\\\":\\\"3333333\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-groupClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-groupOpen\\\",\\\"children\\\":[]},{\\\"label\\\":\\\"夹具\\\",\\\"name\\\":\\\"clamp\\\",\\\"id\\\":\\\"444444\\\",\\\"expanded\\\":true,\\\"expandedIcon\\\":\\\"fa-folder-groupClose\\\",\\\"collapsedIcon\\\":\\\"fa-folder-groupOpen\\\",\\\"children\\\":[]}]}],\\\"info\\\":{\\\"author\\\":\\\"admin\\\",\\\"cTime\\\":\\\"2017-03-30 15:39:00\\\",\\\"mTime\\\":\\\"2017-03-30 15:39:00\\\"},\\\"setUuid\\\":\\\"40D1A0EC-2614-EA3D-1F4F-FD73597FA1D7\\\",\\\"lua\\\":\\\"robot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\nrobot.movep(400,0,0,0,0,100,0.5,1)\\\\r\\\\n\\\",\\\"backup\\\":true}}\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "得到所有程序",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"tests[\"program\"] = responseBody.has(\"program\");",
+									"",
+									"var body = JSON.parse(responseBody);",
+									"",
+									"if (body.data[0]){",
+									"    tests[\"body has program\"] = true;",
+									"    tests[\"id\"]=body.data[0].id;",
+									"    postman.setGlobalVariable(\"pid\", tests[\"id\"]);",
+									"}",
+									"else{",
+									"    tests[\"body has program\"] = false;",
+									"}",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{API}}/{{Prefix}}/programs/all",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "修改第一个程序",
+					"request": {
+						"url": "{{API}}{{Prefix}}/programs/{{pid}}",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"修改{{$randomInt}}\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "删除单个程序",
+					"request": {
+						"url": "{{API}}{{Prefix}}/programs/{{pid}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"description": "login\nadd user\nedit user",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"User_name\"] = responseBody.has(\"account\");",
+									"tests[\"response_code\"]= responseCode.code === 200;",
+									"tests[\"response_header\"] = (postman.getResponseHeader(\"Authorization\"));",
+									"",
+									"var body = JSON.parse(responseBody);",
+									"tests[\"user_id\"]=body.data.id;",
+									"postman.setGlobalVariable(\"user id\", tests[\"user_id\"]);",
+									"",
+									"var token = postman.getResponseHeader('Authorization');",
+									"tests[\"token\"]=token;",
+									"postman.setGlobalVariable(\"token\", tests[\"token\"]); ",
+									"    ",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{API}}{{Prefix}}/users/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account\":\"admin\",\n\t\"password\":\"admin\",\n\t\"platform\":\"android\"\n\t\n}"
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "8b23e9f1-0f0c-4fbf-84c8-e5aa96b0c9e1",
+							"name": "1",
+							"originalRequest": {
+								"url": "{{API}}/{{Prefix}}/users/login",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account\":\"admin\",\n\t\"password\":\"admin\",\n\t\"platform\":\"web\"\n\t\n}"
+								},
+								"description": ""
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PATCH",
+									"name": "Access-Control-Allow-Methods",
+									"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization",
+									"name": "Access-Control-Expose-Headers",
+									"description": "Lets a server whitelist headers that browsers are allowed to access."
+								},
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4YTUwZWYyNjEwMTZlMmMxMDQzZDNkMSIsImlzcyI6InFpeGluZy1ncm91cCJ9.vlAg5J4TaZzxhuUlH6D3HVFT1O1cmiAjSpuTUCL_lRU",
+									"name": "Authorization",
+									"description": "Custom header"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Length",
+									"value": "212",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Feb 2017 06:13:45 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								}
+							],
+							"cookie": [],
+							"responseTime": 50,
+							"body": "{\"total\":1,\"data\":{\"id\":\"58a50ef261016e2c1043d3d1\",\"account\":\"admin\",\"nickname\":\"hzqx_02hzqx_02hzqx_02\",\"password\":\"******\",\"role\":\"1\",\"company\":\"hzqx\",\"phone\":\"18368917079\",\"email\":\"1457995630@qq.com\",\"created_time\":\"2017-02-16 10:31:14\",\"modified_time\":\"2017-02-23 14:13:28\"}}"
+						}
+					]
+				},
+				{
+					"name": "add user",
+					"request": {
+						"url": "{{API}}{{Prefix}}/users",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"account\": \"test\",\n  \"password\": \"test\",\n  \"nickname\": \"QX_test\",\n  \"role\": \"1\",\n  \"company\": \"hzqx\",\n  \"phone\": \"10000000{{$randomInt}}\",\n  \"email\": \"{{$randomInt}}@qq.com\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Edit user",
+					"request": {
+						"url": "{{API}}{{Prefix}}/users/{{user id}}",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"phone\": \"13800000{{$randomInt}}\"\r\n\r\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"url": "{{API}}/{{Prefix}}/users/hzqx",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Websocket",
+			"description": "",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"User_name\"] = responseBody.has(\"account\");",
+									"tests[\"response_code\"]= responseCode.code === 200;",
+									"tests[\"response_header\"] = (postman.getResponseHeader(\"Authorization\"));",
+									"",
+									"var body = JSON.parse(responseBody);",
+									"tests[\"user_id\"]=body.data.id;",
+									"postman.setGlobalVariable(\"user id\", tests[\"user_id\"]);",
+									"",
+									"var token = postman.getResponseHeader('Authorization');",
+									"tests[\"token\"]=token;",
+									"postman.setGlobalVariable(\"token\", tests[\"token\"]); ",
+									"    ",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{API}}{{Prefix}}/users/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account\":\"tracy\",\n\t\"password\":\"tracy\",\n\t\"platform\":\"android\"\n\t\n}"
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "8c286b97-b485-4628-8f05-2cc4ba9719e5",
+							"name": "1",
+							"originalRequest": {
+								"url": "{{API}}/{{Prefix}}/users/login",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account\":\"admin\",\n\t\"password\":\"admin\",\n\t\"platform\":\"web\"\n\t\n}"
+								},
+								"description": ""
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"_postman_previewtype": "text",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, PATCH",
+									"name": "Access-Control-Allow-Methods",
+									"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Authorization",
+									"name": "Access-Control-Expose-Headers",
+									"description": "Lets a server whitelist headers that browsers are allowed to access."
+								},
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4YTUwZWYyNjEwMTZlMmMxMDQzZDNkMSIsImlzcyI6InFpeGluZy1ncm91cCJ9.vlAg5J4TaZzxhuUlH6D3HVFT1O1cmiAjSpuTUCL_lRU",
+									"name": "Authorization",
+									"description": "Custom header"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Length",
+									"value": "212",
+									"name": "Content-Length",
+									"description": "The length of the response body in octets (8-bit bytes)"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 23 Feb 2017 06:13:45 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "Caddy",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								}
+							],
+							"cookie": [],
+							"responseTime": 50,
+							"body": "{\"total\":1,\"data\":{\"id\":\"58a50ef261016e2c1043d3d1\",\"account\":\"admin\",\"nickname\":\"hzqx_02hzqx_02hzqx_02\",\"password\":\"******\",\"role\":\"1\",\"company\":\"hzqx\",\"phone\":\"18368917079\",\"email\":\"1457995630@qq.com\",\"created_time\":\"2017-02-16 10:31:14\",\"modified_time\":\"2017-02-23 14:13:28\"}}"
+						}
+					]
+				},
+				{
+					"name": "websocket",
+					"request": {
+						"url": "{{API}}{{Prefix}}/ws/{{user id}} /android",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "版本管理",
+			"description": "",
+			"item": [
+				{
+					"name": "Publish the new version",
+					"request": {
+						"url": "{{API}}{{Prefix}}/versions",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"version\": \"1.0.0-Alpha.4\",\n  \"version_code\": 100200,\n  \"platform\": \"android\",\n  \"size\": 20,\n  \"level\": 0,\n  \"url\": \"http://hangzhou.qixing-group.com/download/android/android-armv7-release.apk\",\n  \"description\": \"alpha.4升级\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get Newest Version Info",
+					"request": {
+						"url": "{{API}}{{Prefix}}/versions/android",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"p_id\": \"10003\",\n  \"program\": \"program 3333333333333333333333333333\" \n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "用户反馈",
+			"description": "",
+			"item": [
+				{
+					"name": "上传feedback",
+					"request": {
+						"url": "{{API}}{{Prefix}}/feedbacks",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo1",
+									"type": "file",
+									"enabled": true
+								},
+								{
+									"key": "photo2",
+									"type": "file",
+									"enabled": true
+								},
+								{
+									"key": "photo3",
+									"type": "file",
+									"enabled": true
+								},
+								{
+									"key": "photo4",
+									"type": "file",
+									"enabled": true
+								},
+								{
+									"key": "text",
+									"value": "\"11111111111111111111111111\"",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "GET feedback",
+					"request": {
+						"url": "{{API}}{{Prefix}}/feedbacks",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo1",
+									"type": "file",
+									"enabled": true
+								},
+								{
+									"key": "photo2",
+									"type": "file",
+									"enabled": true
+								},
+								{
+									"key": "photo3",
+									"type": "file",
+									"enabled": true
+								},
+								{
+									"key": "photo4",
+									"type": "file",
+									"enabled": true
+								},
+								{
+									"key": "text",
+									"value": "\"11111111111111111111111111\"",
+									"type": "text",
+									"enabled": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
